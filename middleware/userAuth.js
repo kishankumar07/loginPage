@@ -7,6 +7,8 @@ let isLoggedIn = (req,res,next)=>{
   }
 }
 
+//-------------------------------------------
+
 let isLoggedOut = (req,res,next)=>{
  if(req.session.userData){
    res.redirect('/home')
@@ -14,10 +16,6 @@ let isLoggedOut = (req,res,next)=>{
     next();
  }
 }
-
-
-
-
 
 
 module.exports = {
