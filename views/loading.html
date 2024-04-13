@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Loading</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-container" style="text-align: center;">
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/49ca8182-91d8-43c6-8871-af821e5da4cf/wi9OYorwEC.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+    </div>
+
+    <script>
+        // Redirect to home page after 2 seconds
+        setTimeout(() => {
+            window.location.href = "/home";
+        }, 2000);
+    </script>
+</body>
+</html>

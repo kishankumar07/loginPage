@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->    
+    <link rel="icon" type="image/png" href="/loginPageLoadAssets/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=/loginPageLoadAssets/vendor/animate/animate.css">
+<!--===============================================================================================-->    
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/loginPageLoadAssets/css/main.css">
+<!--===============================================================================================-->
+    <!-- iziToast CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+<!--===============================================================================================-->
+
+<!-- iziToast CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+<!-- iziToast JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+
+
+
+
+</head>
+<body>
+    
+    <div class="limiter">
+        
+        <div class="container-login100">
+            
+            <div class="wrap-login100">
+
+
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="/loginPageLoadAssets/images/img-01.png" alt="IMG">
+                </div>
+
+
+              
+
+                <form id="loginForm" action="/" method="post" class="login100-form validate-form" onsubmit="return validateForm()">
+
+
+                    <% if (message.length !==0) { %>
+                        <script>
+                            // Display toast message
+                            iziToast.error({
+                                title: '<%= message %>',
+                                position: 'topRight',
+                                theme: 'dark', // Red color for error message
+                            });
+                        </script>
+                    <% } %>
+                    
+                    <% if (logoutMessage.length !==0) { %>
+                        <script>
+                            // Display toast message for logout
+                            iziToast.success({
+                                title: '<%= logoutMessage %>',
+                                position: 'topRight',
+                                theme: 'light', // Green color for success message
+                            });
+                        </script>
+                    <% } %>
+                    <span class="login100-form-title" style="    padding-bottom: 28px;">
+                        User Login
+                    </span>
+
+                    <div class="wrap-input100 " ">
+                        <input class="input100" type="text" id="name" name="name" placeholder="Name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+						<p id="nameErr" class="error-message" style="color: red;"></p>
+                    </div>
+
+                    <div class="wrap-input100 " >
+                        <input class="input100" type="text" id="email" name="email" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+						<p id="emailErr" class="error-message" style="color: red;"></p>
+                    </div>
+
+                    <div class="wrap-input100 " data-validate="Password is required">
+                        <input class="input100" type="password" id="password" name="password" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+						<p id="passErr" class="error-message" style="color: red;"></p>
+                    </div>
+                    
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							
+						</span>
+						<a class="txt2" href="#">
+							 Create  new account
+						</a>
+					</div>
+
+					
+                </form>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+
+
+
+
+
+        function validateForm() {
+	let name = document.getElementById('name').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let password = document.getElementById('password').value.trim();
+
+    // Reset error messages
+	document.getElementById('nameErr').innerText = '';
+    document.getElementById('emailErr').innerText = '';
+    document.getElementById('passErr').innerText = '';
+
+    let isValid = true;
+
+    // Validate email
+
+	if (name === '') {
+        document.getElementById('nameErr').innerText = 'Name is required';
+        isValid = false;
+    }
+
+    if (email === '') {
+        document.getElementById('emailErr').innerText = 'Email is required';
+        isValid = false;
+    } else if (!validateEmail(email)) {
+        document.getElementById('emailErr').innerText = 'Invalid email format';
+        isValid = false;
+    }
+
+    // Validate password
+    if (password === '') {
+        document.getElementById('passErr').innerText = 'Password is required';
+        isValid = false;
+    }
+	else if (password.length < 7) {
+        document.getElementById('passErr').innerText = 'Please enter a strong password';
+        isValid = false;
+    }
+
+
+
+
+	
+    return isValid;
+}
+
+function validateEmail(email) {
+    // Simple email validation regex
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+    </script>
+
+
+
+
+
+
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->    
+<script src="/loginPageLoadAssets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/loginPageLoadAssets/vendor/bootstrap/js/popper.js"></script>
+    <script src="/loginPageLoadAssets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/loginPageLoadAssets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/loginPageLoadAssets/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+<!--===============================================================================================-->
+
+
+
+
+
+
+    <script src="/loginPageLoadAssets/js/main.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
